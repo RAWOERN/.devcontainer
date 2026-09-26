@@ -16,5 +16,5 @@
   },
 
   // 3. Start-Befehl ausführen (Jetzt sind die Variablen $NC_URL etc. garantiert befüllt)
-  "postStartCommand": "sudo sed -i 's/#user_allow_other/user_allow_other/g' /etc/fuse.conf && sudo apt-get update && sudo apt-get install -y rclone fuse3 && rclone config create nextcloud webdav url=\"$NC_URL\" vendor=nextcloud user=\"$NC_USER\" pass=$(rclone obscure \"$NC_PASS\") && mkdir -p cloud-share && fusermount3 -u cloud-share || true && rclone mount nextcloud: cloud-share --allow-other --vfs-cache-mode full --daemon"
+  "postStartCommand": "sudo sed -i 's/#user_allow_other/user_allow_other/g' /etc/fuse.conf && sudo apt-get update && sudo apt-get install -y rclone fuse3 && rclone config create nextcloud webdav url=\"$NC_URL\" vendor=nextcloud user=\"$NC_USER\" pass=$(rclone obscure \"$NC_PASS\") && mkdir -p cloud-share && fusermount3 -u cloud-share || true && sleep 3 && rclone mount nextcloud: cloud-share --allow-other --vfs-cache-mode full --daemon"
 }
