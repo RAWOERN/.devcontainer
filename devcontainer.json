@@ -9,19 +9,18 @@
   },
 
   // 2. Secrets in globale Umgebungsvariablen umwandeln
-  "remoteEnv": {
+   "remoteEnv": {
     "NC_URL": "${localEnv:NC_URL}",
     "NC_USER": "${localEnv:NC_USER}",
     "NC_PASS": "${localEnv:NC_PASS}"
   },
 
-  // 3. WICHTIG: rclone direkt über das offizielle GitHub-Feature installieren
   "features": {
     "ghcr.io/devcontainers/features/common-utils:1": {
       "configureZshAsDefaultShell": false
     }
   },
 
-  // 4. Der automatisierte Startbefehl (bereinigt und stabilisiert)
-   "postStartCommand": "~/mount-cloud.sh &"
+  // postStartCommand WIRD ENTFERNT UND DURCH postAttachCommand ERSETZT:
+  "postAttachCommand": "~/mount-cloud.sh"
 }
