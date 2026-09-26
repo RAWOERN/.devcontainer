@@ -1,11 +1,1 @@
-{
-  "name": "HiDrive Cloud Codespace",
-  "image": "://microsoft.com",
-  "onCreateCommand": "sudo apt-get update && sudo apt-get install -y rclone",
-  "postStartCommand": "mkdir -p ~/workspace/hidrive-cloud && rclone config create hidrive webdav url=https://strato.com vendor=other user=$HIDRIVE_USER pass=$(rclone obscure $HIDRIVE_PASS) && rclone copy hidrive: ~/workspace/hidrive-cloud --progress",
-  "customizations": {
-    "vscode": {
-      "settings": {}
-    }
-  }
-}
+
