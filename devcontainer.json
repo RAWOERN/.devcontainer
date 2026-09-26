@@ -1,1 +1,14 @@
+{
+  "name": "bwsyncandshare",
+  
+  // Stellt sicher, dass die GitHub Secrets in den Container geladen werden
+  "secrets": {
+    "NC_URL": { "secret": "NC_URL" },
+    "NC_USER": { "secret": "NC_USER" },
+    "NC_PASS": { "secret": "NC_PASS" }
+  },
+
+  // Dieser Befehl läuft bei JEDEM Start des Codespaces automatisch im Hintergrund
+  "postStartCommand": "sudo sed -i 's/#user_allow_other/user_allow_other/g' /etc/fuse.conf && sudo apt-get update && sudo apt-get install -y rclone fuse3 && rclone config create nextcloud webdav url=$NC_URL vendor=nextcloud user=$NC_USER pass=$(rclone obscure $NC_PASS) && mkdir -p cloud-share && fusermount3 -u cloud-share || true && rclone mount nextcloud: cloud-share --allow-other --vfs-cache-mode full --daemon"
+}
 
