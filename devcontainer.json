@@ -1,20 +1,27 @@
 {
   "name": "bwsyncandshare",
   
-  // 1. Secrets anfordern (Gibt an, welche Secrets der Codespace braucht)
+  // 1. Die Secrets aus GitHub anfordern
   "secrets": {
     "NC_URL": {},
     "NC_USER": {},
     "NC_PASS": {}
   },
 
-  // 2. WICHTIG: Secrets in echte Umgebungsvariablen für das Terminal übersetzen
+  // 2. Secrets in globale Umgebungsvariablen umwandeln
   "remoteEnv": {
     "NC_URL": "${localEnv:NC_URL}",
     "NC_USER": "${localEnv:NC_USER}",
     "NC_PASS": "${localEnv:NC_PASS}"
   },
 
-  // 3. Start-Befehl ausführen (Jetzt sind die Variablen $NC_URL etc. garantiert befüllt)
-  "postStartCommand": "sudo sed -i 's/#user_allow_other/user_allow_other/g' /etc/fuse.conf && sudo apt-get update && sudo apt-get install -y rclone fuse3 && rclone config create nextcloud webdav url=\"$NC_URL\" vendor=nextcloud user=\"$NC_USER\" pass=$(rclone obscure \"$NC_PASS\") && mkdir -p cloud-share && fusermount3 -u cloud-share || true && sleep 3 && rclone mount nextcloud: cloud-share --allow-other --vfs-cache-mode full --daemon"
+  // 3. WICHTIG: rclone direkt über das offizielle GitHub-Feature installieren
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:1": {
+      "configureZshAsDefaultShell": false
+    }
+  },
+
+  // 4. Der automatisierte Startbefehl (bereinigt und stabilisiert)
+  "postStartCommand": "sudo apt-get update && sudo apt-get install -y fuse3 && sudo sed -i 's/#user_allow_other/user_allow_other/g' /etc/fuse.conf && rclone config create nextcloud webdav url=\"$NC_URL\" vendor=nextcloud user=\"$NC_USER\" pass=$(rclone obscure \"$NC_PASS\") && mkdir -p cloud-share && fusermount3 -u cloud-share || true && sleep 2 && rclone mount nextcloud: cloud-share --allow-other --vfs-cache-mode full --daemon"
 }
