@@ -1,9 +1,26 @@
 {
-  "name": "Development with bwSync&Share",
+  "name": "Codespace with bwSync&Share",
 
   "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
 
   "postCreateCommand": "bash .devcontainer/install-bwsas.sh",
 
-  "postStartCommand": "bash .devcontainer/start-bwsas.sh"
+  "postStartCommand": "bash .devcontainer/start-bwsas.sh",
+
+  "secrets": {
+    "BWSAS_USER": {
+      "description": "bwSync&Share WebDAV/App-password username"
+    },
+    "BWSAS_APP_PASSWORD": {
+      "description": "bwSync&Share app password"
+    }
+  },
+
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
+    }
+  }
 }
