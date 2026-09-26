@@ -1,8 +1,8 @@
 {
-  "name": "HiDrive Live-Workspace",
+  "name": "HiDrive Cloud Codespace",
   "image": "://microsoft.com",
   "onCreateCommand": "sudo apt-get update && sudo apt-get install -y rclone",
-  "postStartCommand": "rclone config create hidrive webdav url=https://strato.com vendor=other user=$HIDRIVE_USER pass=$(rclone obscure $HIDRIVE_PASS) && mkdir -p ~/workspace/hidrive-cloud && rclone serve webdav hidrive: --addr 127.0.0.1:8080 & sleep 2 && sudo apt-get install -y davfs2 || true && mount -t davfs http://127.0.0.1:8080 ~/workspace/hidrive-cloud -o secrets=/dev/null",
+  "postStartCommand": "mkdir -p ~/workspace/hidrive-cloud && rclone config create hidrive webdav url=https://strato.com vendor=other user=$HIDRIVE_USER pass=$(rclone obscure $HIDRIVE_PASS) && rclone copy hidrive: ~/workspace/hidrive-cloud --progress",
   "customizations": {
     "vscode": {
       "settings": {}
