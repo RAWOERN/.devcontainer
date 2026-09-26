@@ -1,26 +1,9 @@
 {
-  "name": "bwsyncandshare",
-  
-  // 1. Die Secrets aus GitHub anfordern
-  "secrets": {
-    "NC_URL": {},
-    "NC_USER": {},
-    "NC_PASS": {}
-  },
+  "name": "Development with bwSync&Share",
 
-  // 2. Secrets in globale Umgebungsvariablen umwandeln
-   "remoteEnv": {
-    "NC_URL": "${localEnv:NC_URL}",
-    "NC_USER": "${localEnv:NC_USER}",
-    "NC_PASS": "${localEnv:NC_PASS}"
-  },
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
 
-  "features": {
-    "ghcr.io/devcontainers/features/common-utils:1": {
-      "configureZshAsDefaultShell": false
-    }
-  },
+  "postCreateCommand": "bash .devcontainer/install-bwsas.sh",
 
-  // postStartCommand WIRD ENTFERNT UND DURCH postAttachCommand ERSETZT:
-  "postAttachCommand": "~/mount-cloud.sh"
+  "postStartCommand": "bash .devcontainer/start-bwsas.sh"
 }
