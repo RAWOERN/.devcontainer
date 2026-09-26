@@ -25,6 +25,5 @@
   // 4. Der automatisierte Startbefehl (bereinigt und stabilisiert)
   # "postStartCommand": "sudo apt-get update && sudo apt-get install -y fuse3 && sudo sed -i 's/#user_allow_other/user_allow_other/g' /etc/fuse.conf && rclone config create nextcloud webdav url=\"$NC_URL\" vendor=nextcloud user=\"$NC_USER\" pass=$(rclone obscure \"$NC_PASS\") && mkdir -p cloud-share && fusermount3 -u cloud-share || true && sleep 2 && rclone mount nextcloud: cloud-share --allow-other --vfs-cache-mode full --daemon"
   // Startet das Skript aus dem .devcontainer-Verzeichnis heraus asynchron im Hintergrund
-  "postStartCommand": "./.devcontainer/mount-cloud.sh &"
-
+   "postStartCommand": "./.devcontainer/mount-cloud.sh &"
 }
