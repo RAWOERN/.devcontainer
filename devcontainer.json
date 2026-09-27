@@ -16,7 +16,7 @@
       ]
     }
   },
-  "postCreateCommand": "conda create -y -n cantera -c conda-forge cantera ipython matplotlib jupyterlab"
+  "postCreateCommand": "conda create -y -n cantera -c conda-forge cantera ipython numpy matplotlib jupyterlab"
 }
 
 {
