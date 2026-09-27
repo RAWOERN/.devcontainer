@@ -3,7 +3,8 @@
   "image": "mcr.microsoft.com/devcontainers/python:3",
   "postCreateCommand": "pip3 install pandas requests",
   "postCreateCommand": "pip3 install matlibplot requests",
-  "postCreateCommand": "pip3 install numpy requests"
+  "postCreateCommand": "pip3 install numpy requests",
+  "postCreateCommand": "pip3 install scipy requests"
   }
 {
   "name": "Cantera Development Environment",
@@ -16,7 +17,7 @@
       ]
     }
   },
-  "postCreateCommand": "conda create -y -n cantera -c conda-forge cantera ipython numpy matplotlib jupyterlab"
+  "postCreateCommand": "conda create -y -n cantera -c conda-forge cantera ipython numpy scipy matplotlib jupyterlab"
 }
 
 {
