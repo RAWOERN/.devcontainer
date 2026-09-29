@@ -19,13 +19,28 @@
   },
   "postCreateCommand": "conda create -y -n cantera -c conda-forge cantera ipython numpy scipy matplotlib jupyterlab"
 }
-"customizations": {
-"vscode": {
-  "settings": {
-  "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python"
- }
-  }
-  }
+{
+  "name": "Python Projekt mit .venv",
+  "features": {
+    "ghcr.io/devcontainers/features/python:1": {
+      "installTools": true
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-toolsai.jupyter"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
+        "python.terminal.activateEnvInModifiedTerminal": true,
+        "jupyter.notebookFileRoot": "${workspaceFolder}"
+      }
+    }
+  },
+  "postCreateCommand": "conda init bash && eval \"$(conda shell.bash hook)\" && conda deactivate && python3 -m venv .venv && source .venv/bin/activate && pip install --upgrade pip ipykernel && python -m ipykernel install --user --name=projekt-venv --display-name \"Python (.venv)\""
+}
 {
   "name": "Codespace with bwSync&Share",
 
