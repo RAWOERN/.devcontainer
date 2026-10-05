@@ -5,7 +5,7 @@
   "postCreateCommand": "pip3 install matlibplot requests",
   "postCreateCommand": "pip3 install numpy requests",
   "postCreateCommand": "pip3 install scipy requests"
-  "postCreateCommand": "pip3 install plotly.graph_objects"
+  "postCreateCommand": "pip3 install plotlypip anywidget"
   }
 {
   "name": "Cantera Development Environment",
@@ -18,7 +18,7 @@
       ]
     }
   },
-  "postCreateCommand": "conda create -y -n cantera -c conda-forge cantera ipython numpy scipy matplotlib jupyterlab plotly.graph_objects"
+  "postCreateCommand": "conda create -y -n cantera -c conda-forge cantera ipython numpy scipy matplotlib jupyterlab plotly"
 }
 {
   "name": "Python Projekt mit .venv",
