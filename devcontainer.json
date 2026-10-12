@@ -4,7 +4,8 @@
   "postCreateCommand": "pip3 install pandas requests",
   "postCreateCommand": "pip3 install matlibplot requests",
   "postCreateCommand": "pip3 install numpy requests",
-  "postCreateCommand": "pip3 install scipy requests"
+  "postCreateCommand": "pip3 install scipy requests",
+  "postCreateCommand": "pip3 install scipy.optimize requests",
   "postCreateCommand": "pip3 install plotlypip anywidget"
   }
 {
@@ -18,7 +19,7 @@
       ]
     }
   },
-  "postCreateCommand": "conda create -y -n cantera -c conda-forge cantera ipython numpy scipy matplotlib jupyterlab plotly"
+  "postCreateCommand": "conda create -y -n cantera -c conda-forge cantera ipython numpy scipy scipy.optimize matplotlib jupyterlab plotly"
 }
 {
   "name": "Python Projekt mit .venv",
